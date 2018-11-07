@@ -34,7 +34,7 @@ class Setting extends \Mim\Service
             switch ($row->type) {
                 case '3':
                     $value = (int)$value;
-                    breka;
+                    break;
 
                 case '4':
                     $value = (bool)$value;
