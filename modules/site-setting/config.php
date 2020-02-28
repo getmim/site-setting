@@ -2,7 +2,7 @@
 
 return [
     '__name' => 'site-setting',
-    '__version' => '1.0.0',
+    '__version' => '1.1.0',
     '__git' => 'git@github.com:getmim/site-setting.git',
     '__license' => 'MIT',
     '__author' => [
@@ -30,11 +30,22 @@ return [
             'SiteSetting\\Model' => [
                 'type' => 'file',
                 'base' => 'modules/site-setting/model'
+            ],
+            'SiteSetting\\Library' => [
+                'type' => 'file',
+                'base' => 'modules/site-setting/library'
             ]
         ],
         'files' => []
     ],
     'service' => [
         'setting' => 'SiteSetting\\Service\\Setting'
+    ],
+    'libEvent' => [
+        'events' => [
+            'site-setting:updated' => [
+                'SiteSetting\\Library\\Event::clear' => true
+            ]
+        ]
     ]
 ];
