@@ -2,7 +2,7 @@
 /**
  * Setting
  * @package site-setting
- * @version 0.0.1
+ * @version 1.1.1
  */
 
 namespace SiteSetting\Service;
@@ -20,8 +20,12 @@ class Setting extends \Mim\Service
         $cache_name   = 'site-setting';
         $mim = \Mim::$app;
 
-        if($cache_exists && $mim->cache->exists($cache_name))
-            return $this->settings = $mim->cache->get($cache_name);
+        if ($cache_exists) {
+            $this->settings = $mim->cache->get($cache_name);
+            if ($this->settings) {
+                return;
+            }
+        }
 
         $rows = SSetting::get();
         if(!$rows)
